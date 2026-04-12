@@ -6,79 +6,6 @@ import { GiRazor } from "react-icons/gi";
 
 // ── Sub-components ─────────────────────────────────────────────────────────
 
-/**
- * ShepherdCrookWatermark
- * Shepherd's crook whose staff subtly resolves into a razor handle at the base.
- * Appears at ~4% opacity as a large background element — the key visual from the logo concept.
- */
-function ShepherdCrookWatermark() {
-  return (
-    <motion.div
-      aria-hidden="true"
-      className="absolute inset-0 z-[2] flex items-center justify-center pointer-events-none select-none"
-      initial={{ opacity: 0, scale: 0.88 }}
-      animate={{ opacity: 0.042, scale: 1 }}
-      transition={{ duration: 4, ease: "easeOut", delay: 0.6 }}
-    >
-      <svg
-        viewBox="0 0 100 172"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="w-[520px] h-[520px] text-warm-parchment"
-      >
-        {/* Crook hook: curves right then back down */}
-        <path
-          d="M50 14 C50 14, 86 14, 86 48 C86 82, 50 82, 50 82 L50 148"
-          stroke="currentColor"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          fill="none"
-        />
-        {/* Razor handle — the "one continuous line, two meanings" */}
-        <rect
-          x="43"
-          y="148"
-          width="14"
-          height="12"
-          rx="1.5"
-          fill="currentColor"
-          opacity="0.8"
-        />
-        <rect
-          x="44.5"
-          y="160"
-          width="11"
-          height="4"
-          rx="0.75"
-          fill="currentColor"
-          opacity="0.5"
-        />
-        {/* Fine double-rule crest border hint */}
-        <ellipse
-          cx="50"
-          cy="86"
-          rx="46"
-          ry="78"
-          stroke="currentColor"
-          strokeWidth="0.6"
-          opacity="0.35"
-          fill="none"
-        />
-        <ellipse
-          cx="50"
-          cy="86"
-          rx="42"
-          ry="74"
-          stroke="currentColor"
-          strokeWidth="0.3"
-          opacity="0.2"
-          fill="none"
-        />
-      </svg>
-    </motion.div>
-  );
-}
-
 // ── Button helpers ─────────────────────────────────────────────────────────
 
 interface ButtonProps {
@@ -146,9 +73,6 @@ export default function Hero() {
         className="absolute inset-0 z-[1]"
         style={{ backgroundColor: "rgba(28, 43, 30, 0.86)" }}
       />
-
-      {/* ── Z-2: Animated shepherd's crook watermark ─────────────────────── */}
-      <ShepherdCrookWatermark />
 
       {/* ── Z-3: Grain noise ─────────────────────────────────────────────── */}
       <div aria-hidden className="grain-noise z-[3]" />
