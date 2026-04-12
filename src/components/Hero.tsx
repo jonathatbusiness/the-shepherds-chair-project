@@ -134,7 +134,7 @@ export default function Hero() {
       {/* ── Z-0: Background image ────────────────────────────────────────── */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="https://source.unsplash.com/random/1920x1080/?barbershop,vintage,barber,interior,leather,chair"
+        src="images/hero/hero-bg-interior-alberta-st.webp"
         alt=""
         aria-hidden="true"
         className="absolute inset-0 z-0 w-full h-full object-cover object-center"
@@ -164,10 +164,10 @@ export default function Hero() {
       />
 
       {/* ── Z-5: Content ─────────────────────────────────────────────────── */}
-      <div className="relative z-[5] text-center px-6 max-w-5xl mx-auto w-full">
+      <div className="relative z-[5] text-center px-6 max-w-5xl mx-auto w-full pb-52 sm:pb-0">
         {/* Overline label */}
         <motion.p
-          className="label text-shepherds-gold mb-10 md:mb-12"
+          className="label text-shepherds-gold mb-6 md:mb-12"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
@@ -194,7 +194,7 @@ export default function Hero() {
 
         {/* Sub-headline */}
         <motion.p
-          className="font-jakarta text-lg md:text-xl mb-14 mx-auto leading-relaxed max-w-md text-warm-parchment/55"
+          className="font-jakarta text-lg md:text-xl mb-8 md:mb-14 mx-auto leading-relaxed max-w-md text-warm-parchment/55"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.95, ease: "easeOut" }}

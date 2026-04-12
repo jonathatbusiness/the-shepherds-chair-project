@@ -48,37 +48,6 @@ const NAV_LINKS = [
   { label: "Booking", href: "#booking" },
 ];
 
-// ── Shepherd's crook glyph — small, centred ────────────────────────────────
-
-function CrookGlyph({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 40 62"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      aria-hidden="true"
-    >
-      <path
-        d="M20 10 C20 10, 34 10, 34 24 C34 38, 20 38, 20 38 L20 55"
-        stroke="currentColor"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <rect
-        x="15.5"
-        y="55"
-        width="9"
-        height="5"
-        rx="1"
-        fill="currentColor"
-        opacity="0.65"
-      />
-    </svg>
-  );
-}
-
 // ── Main component ─────────────────────────────────────────────────────────
 
 export default function Footer() {
@@ -116,7 +85,13 @@ export default function Footer() {
               className="flex items-center gap-3 group"
               aria-label="The Shepherd's Chair — scroll to top"
             >
-              <CrookGlyph className="w-7 h-10 text-shepherds-gold group-hover:opacity-70 transition-opacity duration-300" />
+              <img
+                src="/images/brand/logo-crook-mark-gold.png"
+                alt="The Shepherd's Chair mark"
+                width={28}
+                height={40}
+                className="group-hover:opacity-70 transition-opacity duration-300"
+              />
               <div className="leading-none">
                 <p className="font-jakarta font-semibold text-warm-parchment text-[10px] tracking-[0.26em] uppercase mb-0.5">
                   The Shepherd&apos;s

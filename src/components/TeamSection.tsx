@@ -13,7 +13,7 @@ interface TeamMember {
   location: string;
   specialty: string[];
   bio: string;
-  imageQuery: string;
+  imagePath: string;
 }
 
 // ── Data ───────────────────────────────────────────────────────────────────
@@ -27,7 +27,7 @@ const TEAM: TeamMember[] = [
     location: "Alberta St.",
     specialty: ["Skin fades", "Beard sculpting", "Straight razor shaves"],
     bio: "He asks one good question per appointment and remembers the answer the next time you're in the chair.",
-    imageQuery: "barber,african,american,man,professional,portrait",
+    imagePath: "/images/team/marcus-webb-head-barber.webp",
   },
   {
     id: "sarah-brennan",
@@ -37,7 +37,7 @@ const TEAM: TeamMember[] = [
     location: "Hawthorne",
     specialty: ["Textured & fine hair", "Scissor-over-comb", "Precision cuts"],
     bio: "She'll tell you what's actually working with your cut — and what isn't. Clients trust that.",
-    imageQuery: "barber,woman,auburn,hair,professional,portrait",
+    imagePath: "/images/team/sarah-brennan-barber-hawthorne.webp",
   },
   {
     id: "tyler-okafor",
@@ -47,7 +47,7 @@ const TEAM: TeamMember[] = [
     location: "Alberta St.",
     specialty: ["Type 4 textures", "Line art & designs", "Low fades"],
     bio: "Energetic, genuinely curious about people. Has strong opinions about music and will defend them.",
-    imageQuery: "barber,man,professional,portrait,young,black",
+    imagePath: "/images/team/tyler-okafor-barber-alberta.webp",
   },
   {
     id: "jake-hollis",
@@ -57,7 +57,7 @@ const TEAM: TeamMember[] = [
     location: "NW 23rd",
     specialty: ["Textured cuts", "Curly hair", "Lived-in styles"],
     bio: "Mellow, genuine, deeply likeable. He listens to whole albums while he works. NW District connects with him immediately.",
-    imageQuery: "barber,man,blond,young,professional,portrait,casual",
+    imagePath: "/images/team/jake-hollis-barber-nw23rd.webp",
   },
   {
     id: "elena-vasquez",
@@ -71,7 +71,7 @@ const TEAM: TeamMember[] = [
       "The first impression",
     ],
     bio: "She remembers your preferred beverage. She is, in many ways, the connective tissue of the Alberta location.",
-    imageQuery: "woman,latina,professional,portrait,hospitality,confident",
+    imagePath: "/images/team/elena-vasquez-client-experience.webp",
   },
 ];
 
@@ -119,8 +119,7 @@ function TeamCard({ member }: { member: TeamMember }) {
       <div className="relative h-72 md:h-80 overflow-hidden shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          /* &sig= prevents Unsplash from serving the same random image for every card */
-          src={`https://source.unsplash.com/random/600x800/?${member.imageQuery}&sig=${member.id}`}
+          src={member.imagePath}
           alt={`${member.name}, ${member.role}`}
           className="
             w-full h-full object-cover object-top
@@ -167,11 +166,7 @@ function TeamCard({ member }: { member: TeamMember }) {
           {member.specialty.map((spec) => (
             <span
               key={spec}
-              className="
-                font-jakarta text-warm-parchment/40 text-[9px] tracking-[0.12em] uppercase
-                px-2.5 py-1
-                border border-warm-parchment/10
-              "
+              className="font-jakarta text-warm-parchment/40 text-[9px] tracking-[0.12em] uppercase px-2.5 py-1 border border-warm-parchment/10"
             >
               {spec}
             </span>
@@ -186,22 +181,11 @@ function TeamCard({ member }: { member: TeamMember }) {
         {/* Per-member CTA */}
         <a
           href="#booking"
-          className="
-            group/cta inline-flex items-center gap-2 w-fit
-            font-jakarta font-semibold text-[11px] tracking-[0.18em] uppercase
-            text-warm-parchment/60
-            border-b border-warm-parchment/18 pb-0.5
-            hover:text-shepherds-gold hover:border-shepherds-gold/40
-            transition-all duration-300
-          "
+          className="group/cta inline-flex items-center gap-2 w-fit font-jakarta font-semibold text-[11px] tracking-[0.18em] uppercase text-warm-parchment/60 border-b border-warm-parchment/18 pb-0.5 hover:text-shepherds-gold hover:border-shepherds-gold/40 transition-all duration-300"
         >
           Get in {firstName}&apos;s Chair
           <ArrowRight
-            className="
-              w-3.5 h-3.5
-              transition-transform duration-300
-              group-hover/cta:translate-x-1
-            "
+            className="w-3.5 h-3.5 transition-transform duration-300 group-hover/cta:translate-x-1"
             aria-hidden="true"
           />
         </a>
@@ -221,7 +205,7 @@ export default function TeamSection() {
       {/* Grain noise */}
       <div aria-hidden className="grain-noise" />
 
-      {/* Subtle warm gradient top edge — creates visual continuity from Services */}
+      {/* Subtle warm gradient top edge */}
       <div
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 h-px"
@@ -259,11 +243,6 @@ export default function TeamSection() {
         </motion.div>
 
         {/* ── Team grid ── */}
-        {/*
-          5-column layout on xl+, 3 on lg, 2 on sm, 1 on mobile.
-          On xl this creates [Marcus][Sarah][Tyler][Jake][Elena].
-          On lg it wraps gracefully: [Marcus][Sarah][Tyler] then [Jake][Elena].
-        */}
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-5"
           variants={containerVariants}
@@ -278,10 +257,7 @@ export default function TeamSection() {
 
         {/* ── Section footer note ── */}
         <motion.p
-          className="
-            mt-14 font-jakarta text-warm-parchment/28
-            text-[11px] tracking-[0.22em] uppercase text-center
-          "
+          className="mt-14 font-jakarta text-warm-parchment/28 text-[11px] tracking-[0.22em] uppercase text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

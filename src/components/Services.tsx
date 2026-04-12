@@ -12,7 +12,7 @@ interface Service {
   description: string;
   duration: string;
   startingPrice: string;
-  imageQuery: string;
+  imagePath: string;
 }
 
 // ── Data ───────────────────────────────────────────────────────────────────
@@ -26,7 +26,7 @@ const SERVICES: Service[] = [
       "A precision cut shaped around your face, your hair, and how you actually live your life. Consultation always included — never skipped.",
     duration: "45 min",
     startingPrice: "$38",
-    imageQuery: "barber,scissors,haircut,grooming,tools",
+    imagePath: "/images/services/classic-cut-and-style.webp",
   },
   {
     id: "fade-taper",
@@ -36,7 +36,7 @@ const SERVICES: Service[] = [
       "Skin, low, mid, or high — every gradient placed exactly where it belongs. Refined, precise, never overdone.",
     duration: "50 min",
     startingPrice: "$42",
-    imageQuery: "barber,fade,hair,clippers,precision",
+    imagePath: "/images/services/fade-and-taper.webp",
   },
   {
     id: "beard-sculpt",
@@ -46,7 +46,7 @@ const SERVICES: Service[] = [
       "Sculpted to your face structure and finished with a hot towel treatment and quality product that actually lasts through the week.",
     duration: "35 min",
     startingPrice: "$30",
-    imageQuery: "beard,grooming,barber,razor,sculpt",
+    imagePath: "/images/services/beard-sculpt-hot-towel.webp",
   },
   {
     id: "straight-razor",
@@ -56,7 +56,7 @@ const SERVICES: Service[] = [
       "Hot lather, a steady hand, a cool finish. A shave that reminds you what a shave is supposed to feel like.",
     duration: "60 min",
     startingPrice: "$55",
-    imageQuery: "straight,razor,shave,barber,hot,towel,vintage",
+    imagePath: "/images/services/straight-razor-shave.webp",
   },
 ];
 
@@ -103,7 +103,7 @@ function ServiceCard({ service }: { service: Service }) {
       <div className="relative h-56 md:h-60 overflow-hidden shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`https://source.unsplash.com/random/800x600/?${service.imageQuery}`}
+          src={service.imagePath}
           alt={service.name}
           className="
             w-full h-full object-cover object-center
@@ -115,10 +115,10 @@ function ServiceCard({ service }: { service: Service }) {
         {/* Subtle dark scrim */}
         <div
           className="
-          absolute inset-0
-          bg-forest-ink/22 group-hover:bg-forest-ink/10
-          transition-colors duration-500
-        "
+            absolute inset-0
+            bg-forest-ink/22 group-hover:bg-forest-ink/10
+            transition-colors duration-500
+          "
         />
         {/* Price badge */}
         <div className="absolute top-4 right-0 bg-forest-ink px-4 py-2">

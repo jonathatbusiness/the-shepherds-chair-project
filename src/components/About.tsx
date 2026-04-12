@@ -52,7 +52,7 @@ export default function About() {
         <div className="relative h-72 sm:h-96 md:hidden overflow-hidden order-first">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://source.unsplash.com/random/900x600/?barber,man,portrait,window,light,barbershop"
+            src="images/about/nathan-joel-mercer-mobile.webp"
             alt="The Shepherd's Chair — Alberta Street flagship"
             className="w-full h-full object-cover object-center"
           />
@@ -178,7 +178,7 @@ export default function About() {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="https://source.unsplash.com/random/900x1200/?barber,man,portrait,window,light,barbershop,shop&sig=about"
+            src="images/about/nathan-joel-mercer-portrait.webp"
             alt="The Shepherd's Chair — Alberta Street flagship, natural window light"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
