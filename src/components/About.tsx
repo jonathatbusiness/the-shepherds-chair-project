@@ -1,40 +1,53 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { motion, Variants } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 // ── Data ───────────────────────────────────────────────────────────────────
 
 const VALUES = [
-  { name: 'Craft Over Speed',              note: 'Every cut gets the time it deserves. No rushing. No corners cut.' },
-  { name: 'People Before Transactions',    note: 'We know your name. We remember your cut. We ask how your mom is doing.' },
-  { name: 'Rooted in Place',               note: 'We hire local, source local, give local. Portland isn\'t a backdrop — it\'s who we are.' },
-  { name: 'Integrity in the Quiet Things', note: 'Fair wages, honest pricing, closed on Sundays. The small choices reveal the real values.' },
-  { name: 'Welcome Without Exception',     note: 'Anyone who walks through our door belongs here. Period.' },
-]
+  {
+    name: "Craft Over Speed",
+    note: "Every cut gets the time it deserves. No rushing. No corners cut.",
+  },
+  {
+    name: "People Before Transactions",
+    note: "We know your name. We remember your cut. We ask how your mom is doing.",
+  },
+  {
+    name: "Rooted in Place",
+    note: "We hire local, source local, give local. Portland isn't a backdrop — it's who we are.",
+  },
+  {
+    name: "Integrity in the Quiet Things",
+    note: "Fair wages, honest pricing, closed on Sundays. The small choices reveal the real values.",
+  },
+  {
+    name: "Welcome Without Exception",
+    note: "Anyone who walks through our door belongs here. Period.",
+  },
+];
 
 // ── Animation factory ──────────────────────────────────────────────────────
 
 const fadeUp = (delay = 0) => ({
-  initial:     { opacity: 0, y: 28 },
-  whileInView: { opacity: 1, y: 0  },
-  viewport:    { once: true, margin: '-80px' as const },
-  transition:  { duration: 0.82, delay, ease: [0.16, 1, 0.3, 1] as const },
-})
+  initial: { opacity: 0, y: 28 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-80px" as const },
+  transition: { duration: 0.82, delay, ease: [0.16, 1, 0.3, 1] as const },
+});
 
 // ── Main component ─────────────────────────────────────────────────────────
 
 export default function About() {
   return (
     <section id="about" className="relative bg-warm-parchment overflow-hidden">
-
       {/*
         Full-bleed two-column grid — no container wrapper, columns ARE the layout.
         Mobile: stacked (image first, text below).
         md+: text left (55fr) / image right (45fr).
       */}
       <div className="md:grid md:grid-cols-[55fr_45fr] md:min-h-[780px] lg:min-h-[880px]">
-
         {/* ── Mobile-first: image appears above text on small screens ── */}
         <div className="relative h-72 sm:h-96 md:hidden overflow-hidden order-first">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -45,7 +58,10 @@ export default function About() {
           />
           <div
             className="absolute inset-0"
-            style={{ background: 'linear-gradient(to top, rgba(244,239,228,0.6) 0%, transparent 60%)' }}
+            style={{
+              background:
+                "linear-gradient(to top, rgba(244,239,228,0.6) 0%, transparent 60%)",
+            }}
           />
         </div>
 
@@ -54,18 +70,15 @@ export default function About() {
           className="flex flex-col justify-center px-8 sm:px-12 md:px-16 lg:px-24 xl:px-28 py-20 md:py-32"
           {...fadeUp(0)}
         >
-
           {/* Overline */}
-          <p className="label text-shepherds-gold mb-6">
-            How We Got Here
-          </p>
+          <p className="label text-shepherds-gold mb-6">How We Got Here</p>
 
           {/* Headline */}
           <h2
             className="font-dm text-forest-ink leading-[1.12] mb-8"
-            style={{ fontSize: 'clamp(1.75rem, 3.2vw, 2.85rem)' }}
+            style={{ fontSize: "clamp(1.75rem, 3.2vw, 2.85rem)" }}
           >
-            Nathan and Joel Mercer grew up in NE&nbsp;Portland.{' '}
+            Nathan and Joel Mercer grew up in NE&nbsp;Portland.{" "}
             <span className="text-forest-ink/45">
               Their dad built things with his hands.&nbsp;So do they.
             </span>
@@ -74,18 +87,20 @@ export default function About() {
           {/* Body copy */}
           <div className="space-y-5 font-jakarta text-forest-ink/60 text-base md:text-[17px] leading-[1.84] mb-10 max-w-[520px]">
             <p>
-              Their father ran a small auto repair shop on Sandy Boulevard. They grew up watching
-              him build something from nothing — with his hands, on his terms. That shaped
-              everything about how they do business.
+              Their father ran a small auto repair shop on Sandy Boulevard. They
+              grew up watching him build something from nothing — with his
+              hands, on his terms. That shaped everything about how they do
+              business.
             </p>
             <p>
-              The name was Joel&apos;s idea, arrived at during a conversation with their pastor
-              after the first year of business. He wanted a name that carried weight — something
-              that pointed, quietly, to the idea that good care is a calling, not a transaction.
-              A shepherd tends to each one. The chair is where that happens.
+              The name was Joel&apos;s idea, arrived at during a conversation
+              with their pastor after the first year of business. He wanted a
+              name that carried weight — something that pointed, quietly, to the
+              idea that good care is a calling, not a transaction. A shepherd
+              tends to each one. The chair is where that happens.
             </p>
             <p>
-              They chose not to explain the name publicly.{' '}
+              They chose not to explain the name publicly.{" "}
               <em className="font-lora not-italic text-worn-leather">
                 It&apos;s on the sign. People who get it, get it.
               </em>
@@ -99,10 +114,11 @@ export default function About() {
           >
             <p
               className="font-lora italic text-forest-ink/68 leading-[1.65]"
-              style={{ fontSize: 'clamp(1rem, 1.8vw, 1.2rem)' }}
+              style={{ fontSize: "clamp(1rem, 1.8vw, 1.2rem)" }}
             >
-              &ldquo;We wanted the guy who works at Powell&apos;s to feel as comfortable here
-              as the guy who works at Intel. Same chair, same quality, same conversation.&rdquo;
+              &ldquo;We wanted the guy who works at Powell&apos;s to feel as
+              comfortable here as the guy who works at Intel. Same chair, same
+              quality, same conversation.&rdquo;
             </p>
             <footer className="font-jakarta text-brand-sage text-[11px] tracking-[0.2em] uppercase mt-4">
               — Joel Mercer, Co-founder
@@ -111,7 +127,9 @@ export default function About() {
 
           {/* Values — prose-integrated list, never bullet-listy */}
           <motion.div className="mb-12 max-w-[500px]" {...fadeUp(0.22)}>
-            <p className="label text-forest-ink/30 mb-5">What we actually stand for</p>
+            <p className="label text-forest-ink/30 mb-5">
+              What we actually stand for
+            </p>
             <ul className="space-y-3.5" role="list">
               {VALUES.map((v) => (
                 <li key={v.name} className="flex gap-3 items-baseline">
@@ -120,7 +138,9 @@ export default function About() {
                     className="shrink-0 w-1 h-1 rounded-full bg-shepherds-gold mt-2"
                   />
                   <span className="font-jakarta text-sm text-forest-ink/65 leading-relaxed">
-                    <strong className="font-semibold text-forest-ink/85">{v.name}. </strong>
+                    <strong className="font-semibold text-forest-ink/85">
+                      {v.name}.{" "}
+                    </strong>
                     {v.note}
                   </span>
                 </li>
@@ -146,7 +166,6 @@ export default function About() {
               aria-hidden="true"
             />
           </motion.a>
-
         </motion.div>
 
         {/* ── Right: Portrait image (desktop only) ── */}
@@ -154,7 +173,7 @@ export default function About() {
           className="relative hidden md:block overflow-hidden"
           initial={{ opacity: 0, scale: 1.05 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: '-80px' }}
+          viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -169,7 +188,7 @@ export default function About() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                'linear-gradient(to right, rgba(244,239,228,0.35) 0%, transparent 30%), linear-gradient(to top, rgba(28,43,30,0.6) 0%, transparent 55%)',
+                "linear-gradient(to right, rgba(244,239,228,0.35) 0%, transparent 30%), linear-gradient(to top, rgba(28,43,30,0.6) 0%, transparent 55%)",
             }}
           />
 
@@ -187,20 +206,23 @@ export default function About() {
           <div
             aria-hidden="true"
             className="absolute top-16 bottom-16 left-0 w-px"
-            style={{ background: 'linear-gradient(to bottom, transparent, rgba(180,154,61,0.4), transparent)' }}
+            style={{
+              background:
+                "linear-gradient(to bottom, transparent, rgba(180,154,61,0.4), transparent)",
+            }}
           />
-
         </motion.div>
-
       </div>
 
       {/* Bottom decorative rule */}
       <div
         aria-hidden="true"
         className="h-px w-full"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(180,154,61,0.2), transparent)' }}
+        style={{
+          background:
+            "linear-gradient(90deg, transparent, rgba(180,154,61,0.2), transparent)",
+        }}
       />
-
     </section>
-  )
+  );
 }

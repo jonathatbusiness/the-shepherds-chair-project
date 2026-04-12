@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { MapPin, Clock, ArrowUpRight } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
 
@@ -82,12 +82,15 @@ const containerVariants = {
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
 };
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 36 },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
+    transition: {
+      duration: 0.78,
+      ease: [0.16, 1, 0.3, 1] as const,
+    },
   },
 };
 
