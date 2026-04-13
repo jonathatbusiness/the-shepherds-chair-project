@@ -269,7 +269,7 @@ export default function Locations() {
             Walk-ins welcome when space allows. Booking recommended.
           </p>
           <a
-            href="https://instagram.com/theshepherdschair"
+            href="https://instagram.com/theshepherdschair_"
             target="_blank"
             rel="noopener noreferrer"
             className="
