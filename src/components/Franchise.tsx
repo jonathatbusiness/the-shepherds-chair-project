@@ -115,36 +115,6 @@ export default function Franchise() {
       {/* Grain */}
       <div aria-hidden className="grain-noise" />
 
-      {/* Decorative background crook — faint watermark */}
-      <div
-        aria-hidden="true"
-        className="absolute -right-24 top-1/2 -translate-y-1/2 pointer-events-none opacity-[0.025]"
-      >
-        <svg
-          viewBox="0 0 100 172"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-96 h-96 text-warm-parchment"
-        >
-          <path
-            d="M50 14 C50 14, 86 14, 86 48 C86 82, 50 82, 50 82 L50 148"
-            stroke="currentColor"
-            strokeWidth="3.5"
-            strokeLinecap="round"
-            fill="none"
-          />
-          <rect
-            x="43"
-            y="148"
-            width="14"
-            height="12"
-            rx="1.5"
-            fill="currentColor"
-            opacity="0.8"
-          />
-        </svg>
-      </div>
-
       <div className="relative section-container">
         {/* ── Two-column layout: copy left / form right ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 lg:gap-24 items-start">

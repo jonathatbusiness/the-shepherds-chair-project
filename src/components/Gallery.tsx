@@ -7,23 +7,20 @@ import { motion } from "framer-motion";
 
 interface GalleryImage {
   id: string;
-  query: string;
-  tag: string; // hover label
+  imagePath: string;
+  tag: string;
   alt: string;
   aspect: "landscape" | "portrait" | "square";
-  /** CSS grid-column span (1–3) and grid-row span */
   colSpan: number;
   rowSpan: number;
 }
 
 // ── Data ───────────────────────────────────────────────────────────────────
-// 8 images arranged in a deliberate editorial asymmetric grid.
-// The grid is defined with explicit col/row spans.
 
 const IMAGES: GalleryImage[] = [
   {
     id: "hero-interior",
-    query: "barbershop,interior,leather,chair,amber,light,vintage",
+    imagePath: "/images/gallery/alberta-st-interior-chairs-wide.webp",
     tag: "Alberta St · Interior",
     alt: "Vintage leather barber chairs under amber pendant lights",
     aspect: "landscape",
@@ -32,7 +29,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "razor-detail",
-    query: "straight,razor,leather,strop,barber,detail,close",
+    imagePath: "/images/gallery/detail-straight-razor-strop.webp",
     tag: "Alberta St · Detail",
     alt: "Straight razor on leather strop — tool detail",
     aspect: "portrait",
@@ -41,7 +38,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "barber-action",
-    query: "barber,cutting,hair,action,focus,scissors",
+    imagePath: "/images/gallery/barber-in-action-scissors.webp",
     tag: "Hawthorne · In Session",
     alt: "Barber at work — concentration during a precision cut",
     aspect: "landscape",
@@ -50,7 +47,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "exterior",
-    query: "barbershop,exterior,brick,green,portland,storefront",
+    imagePath: "/images/gallery/alberta-st-exterior-afternoon.webp",
     tag: "Alberta St · Exterior",
     alt: "The Shepherd's Chair storefront on NE Alberta Street",
     aspect: "landscape",
@@ -59,7 +56,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "mirror-reflection",
-    query: "barbershop,mirror,reflection,chairs,interior,symmetry",
+    imagePath: "/images/gallery/interior-mirror-reflection-chairs.webp",
     tag: "NW 23rd · Interior",
     alt: "Barber chairs reflected in full-length mirror wall",
     aspect: "portrait",
@@ -68,7 +65,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "product-shelf",
-    query: "barber,products,shelf,pomade,grooming,detail",
+    imagePath: "/images/gallery/detail-retail-product-shelf.webp",
     tag: "Alberta St · Retail",
     alt: "Curated grooming product shelf at the Alberta location",
     aspect: "landscape",
@@ -77,7 +74,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "client-moment",
-    query: "barber,client,conversation,reveal,cut,finished",
+    imagePath: "/images/gallery/barber-client-conversation.webp",
     tag: "Hawthorne · The Reveal",
     alt: "Client seeing the finished cut — that half-second of recognition",
     aspect: "landscape",
@@ -86,7 +83,7 @@ const IMAGES: GalleryImage[] = [
   },
   {
     id: "window-light",
-    query: "barbershop,empty,chair,window,morning,light,peaceful",
+    imagePath: "/images/gallery/empty-chair-window-morning-light.webp",
     tag: "Alberta St · Before the First Appointment",
     alt: "Empty barber chair in morning window light",
     aspect: "portrait",
@@ -95,22 +92,30 @@ const IMAGES: GalleryImage[] = [
   },
 ];
 
-// ── GalleryItem ────────────────────────────────────────────────────────────
+// Mobile layout: 2 colunas, sem rowSpan, sem buracos negros
+// col-span 2 = largura total | col-span 1 = metade
+const MOBILE_LAYOUT: { id: string; colSpan: 1 | 2 }[] = [
+  { id: "hero-interior", colSpan: 2 }, // destaque full-width
+  { id: "razor-detail", colSpan: 1 },
+  { id: "barber-action", colSpan: 1 },
+  { id: "exterior", colSpan: 1 },
+  { id: "mirror-reflection", colSpan: 1 },
+  { id: "product-shelf", colSpan: 1 },
+  { id: "client-moment", colSpan: 1 },
+  { id: "window-light", colSpan: 2 }, // encerra full-width
+];
+
+// ── GalleryItem (desktop) ──────────────────────────────────────────────────
 
 function GalleryItem({ img, index }: { img: GalleryImage; index: number }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      className={`
-        relative overflow-hidden group cursor-pointer
-        col-span-${img.colSpan} row-span-${img.rowSpan}
-      `}
+      className="relative overflow-hidden group cursor-pointer"
       style={{
-        // Tailwind JIT can't resolve dynamic colSpan class names — use inline style
         gridColumn: `span ${img.colSpan} / span ${img.colSpan}`,
         gridRow: `span ${img.rowSpan} / span ${img.rowSpan}`,
-        // Aspect ratio for items without a fixed height context
         aspectRatio:
           img.rowSpan === 2
             ? undefined
@@ -132,32 +137,19 @@ function GalleryItem({ img, index }: { img: GalleryImage; index: number }) {
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={`https://source.unsplash.com/random/1200x900/?${img.query}&sig=gallery-${img.id}`}
+        src={img.imagePath}
         alt={img.alt}
-        className="
-          w-full h-full object-cover
-          transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-          group-hover:scale-[1.05]
-        "
+        className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
         loading="lazy"
       />
-
-      {/* Permanent subtle scrim */}
       <div className="absolute inset-0 bg-forest-ink/15 group-hover:bg-forest-ink/5 transition-colors duration-500" />
-
-      {/* Hover tag */}
       <motion.div
         className="absolute bottom-4 left-4 pointer-events-none"
         initial={{ opacity: 0, y: 6 }}
         animate={{ opacity: hovered ? 1 : 0, y: hovered ? 0 : 6 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
       >
-        <span
-          className="
-          font-jakarta text-warm-parchment text-[10px] tracking-[0.2em] uppercase
-          bg-forest-ink/75 backdrop-blur-sm px-3 py-1.5
-        "
-        >
+        <span className="font-jakarta text-warm-parchment text-[10px] tracking-[0.2em] uppercase bg-forest-ink/75 backdrop-blur-sm px-3 py-1.5">
           {img.tag}
         </span>
       </motion.div>
@@ -165,12 +157,70 @@ function GalleryItem({ img, index }: { img: GalleryImage; index: number }) {
   );
 }
 
+// ── MobileGalleryItem ──────────────────────────────────────────────────────
+
+function MobileGalleryItem({
+  img,
+  colSpan,
+  index,
+}: {
+  img: GalleryImage;
+  colSpan: 1 | 2;
+  index: number;
+}) {
+  // Aspect ratio por tipo de imagem no mobile
+  const aspectRatio =
+    colSpan === 2
+      ? img.aspect === "portrait"
+        ? "4/3" // full-width portrait vira quase quadrado
+        : "16/9" // full-width landscape — cinemático
+      : img.aspect === "portrait"
+        ? "3/4" // meia-largura portrait — alto
+        : "1/1"; // meia-largura landscape — quadrado
+
+  return (
+    <motion.div
+      className="relative overflow-hidden group cursor-pointer"
+      style={{
+        gridColumn: `span ${colSpan} / span ${colSpan}`,
+        aspectRatio,
+      }}
+      initial={{ opacity: 0, scale: 0.96 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{
+        duration: 0.85,
+        delay: index * 0.06,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={img.imagePath}
+        alt={img.alt}
+        className="w-full h-full object-cover object-[center_20%]"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-forest-ink/15" />
+      {/* Tag sempre visível no mobile (sem hover) */}
+      <div className="absolute bottom-3 left-3">
+        <span className="font-jakarta text-warm-parchment text-[9px] tracking-[0.18em] uppercase bg-forest-ink/70 backdrop-blur-sm px-2.5 py-1">
+          {img.tag}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
 // ── Main component ─────────────────────────────────────────────────────────
 
 export default function Gallery() {
+  // Mapeia id → GalleryImage para lookup rápido no mobile layout
+  const imageMap = Object.fromEntries(IMAGES.map((img) => [img.id, img]));
+
   return (
     <section id="gallery" className="bg-deep-grove overflow-hidden">
-      {/* ── Section header — bleeds into the grid ── */}
+      {/* ── Section header ── */}
       <div className="section-container pt-28 md:pt-36 pb-10 md:pb-12">
         <motion.div
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4"
@@ -195,19 +245,28 @@ export default function Gallery() {
         </motion.div>
       </div>
 
-      {/* ── Grid — full-width, no side padding ── */}
-      {/*
-        Layout (desktop, 3 cols):
-        [hero-interior ×2] [razor-detail ×1 ×2row]
-        [hero-interior ×2] [barber-action ×1]
-                           [exterior ×1]
-        [mirror-refl ×1 ×2row] [product ×1] [client ×1] [window ×1 ×2row]
-        [mirror-refl ×1 ×2row] [               window ×1 ×2row]
-      */}
+      {/* ── MOBILE grid (< md) — 2 colunas, aspect-ratio fluido, sem buracos ── */}
       <div
-        className="px-2 md:px-3 pb-28 md:pb-36"
+        className="md:hidden px-2 pb-24"
         style={{
           display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "6px",
+        }}
+      >
+        {MOBILE_LAYOUT.map(({ id, colSpan }, i) => {
+          const img = imageMap[id];
+          if (!img) return null;
+          return (
+            <MobileGalleryItem key={id} img={img} colSpan={colSpan} index={i} />
+          );
+        })}
+      </div>
+
+      {/* ── DESKTOP grid (md+) — layout original com col/row spans ── */}
+      <div
+        className="hidden md:grid px-3 pb-36"
+        style={{
           gridTemplateColumns: "repeat(3, 1fr)",
           gridAutoRows: "280px",
           gap: "8px",

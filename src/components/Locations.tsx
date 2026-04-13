@@ -14,7 +14,7 @@ interface Location {
   city: string;
   hours: { days: string; time: string }[];
   note: string;
-  imageQuery: string;
+  imagePath: string;
   mapsUrl: string;
   since?: string;
 }
@@ -35,7 +35,7 @@ const LOCATIONS: Location[] = [
       { days: "Sunday", time: "Closed" },
     ],
     note: "The flagship. Where it started.",
-    imageQuery: "barbershop,brick,exterior,portland,green,vintage",
+    imagePath: "/images/locations/alberta-arts-district-exterior.webp",
     mapsUrl: "https://maps.google.com/?q=2214+NE+Alberta+St+Portland+OR",
     since: "2017",
   },
@@ -52,7 +52,7 @@ const LOCATIONS: Location[] = [
       { days: "Sunday", time: "Closed" },
     ],
     note: "Jake's home base. The NW crowd found their barber.",
-    imageQuery: "barbershop,storefront,nw,portland,neighborhood",
+    imagePath: "/images/locations/nw-district-nw23rd-exterior.webp",
     mapsUrl: "https://maps.google.com/?q=1180+NW+23rd+Ave+Portland+OR",
     since: "2020",
   },
@@ -69,7 +69,7 @@ const LOCATIONS: Location[] = [
       { days: "Sunday", time: "Closed" },
     ],
     note: "The highest diversity of clients of all three locations.",
-    imageQuery: "barbershop,hawthorne,portland,se,neighborhood,storefront",
+    imagePath: "/images/locations/hawthorne-se-exterior.webp",
     mapsUrl: "https://maps.google.com/?q=4312+SE+Hawthorne+Blvd+Portland+OR",
     since: "2022",
   },
@@ -106,7 +106,7 @@ function LocationCard({ loc }: { loc: Location }) {
       <div className="relative h-52 overflow-hidden shrink-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={`https://source.unsplash.com/random/800x500/?${loc.imageQuery}&sig=${loc.id}`}
+          src={loc.imagePath}
           alt={`The Shepherd's Chair — ${loc.neighbourhood}`}
           className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
           loading="lazy"

@@ -15,13 +15,21 @@ const fadeUp = (delay = 0) => ({
 
 function JoinPdxBadge() {
   return (
-    <div className="inline-flex items-center gap-4 border border-warm-parchment/12 px-6 py-4">
-      {/* Placeholder logo mark */}
-      <div className="w-9 h-9 rounded-full bg-shepherds-gold/20 border border-shepherds-gold/30 flex items-center justify-center shrink-0">
-        <span className="font-jakarta font-semibold text-shepherds-gold text-xs">
-          J
-        </span>
-      </div>
+    <a
+      href="https://joinpdx.org"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-4 border border-warm-parchment/12 px-6 py-4 hover:border-warm-parchment/25 transition-colors duration-300"
+      aria-label="JOIN PDX — Community partner"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/partners/join-pdx-logo.webp"
+        alt="JOIN PDX logo"
+        width={128}
+        height={60}
+        className="shrink-0 object-contain"
+      />
       <div>
         <p className="font-jakarta text-warm-parchment/80 text-sm font-semibold tracking-wide">
           JOIN PDX
@@ -30,7 +38,7 @@ function JoinPdxBadge() {
           Community partner · Portland, OR
         </p>
       </div>
-    </div>
+    </a>
   );
 }
 

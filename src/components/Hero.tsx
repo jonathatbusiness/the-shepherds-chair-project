@@ -56,7 +56,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
+      className="relative h-dvh min-h-[700px] flex items-center justify-center overflow-hidden"
     >
       {/* ── Z-0: Background image ────────────────────────────────────────── */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -148,7 +148,7 @@ export default function Hero() {
 
       {/* ── Z-5: INDICADOR DE SCROLL (CÁPSULA) ── */}
       <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-[10] flex flex-col items-center gap-4">
-        <span className="font-jakarta text-[9px] tracking-[0.32em] uppercase text-shepherds-gold/50">
+        <span className="font-jakarta text-[9px] tracking-[0.32em] uppercase text-shepherds-gold/80">
           Scroll
         </span>
         <a href="#about" className="block">
