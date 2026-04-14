@@ -138,12 +138,12 @@ export default function RootLayout({
         ${lora.variable}
       `}
     >
-      <body className="bg-linen-white font-jakarta antialiased overflow-x-hidden">
+      <head>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8PB645CV4Y"
-          strategy="afterInteractive"
+          strategy="beforeInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -151,6 +151,8 @@ export default function RootLayout({
             gtag('config', 'G-8PB645CV4Y');
           `}
         </Script>
+      </head>
+      <body className="bg-linen-white font-jakarta antialiased overflow-x-hidden">
         {children}
       </body>
     </html>
