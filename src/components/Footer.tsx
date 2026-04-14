@@ -244,7 +244,7 @@ export default function Footer() {
           {/* Social */}
           <div className="flex items-center gap-6">
             <a
-              href="https://instagram.com/theshepherdschair"
+              href="https://instagram.com/theshepherdschair_"
               target="_blank"
               rel="noopener noreferrer"
               className="
