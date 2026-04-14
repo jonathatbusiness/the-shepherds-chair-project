@@ -247,9 +247,8 @@ export default function Gallery() {
 
       {/* ── MOBILE grid (< md) — 2 colunas, aspect-ratio fluido, sem buracos ── */}
       <div
-        className="md:hidden px-2 pb-24"
+        className="grid md:hidden px-2 pb-24"
         style={{
-          display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
           gap: "6px",
         }}
