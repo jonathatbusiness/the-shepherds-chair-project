@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   Cormorant_Garamond,
   DM_Serif_Display,
@@ -138,6 +139,18 @@ export default function RootLayout({
       `}
     >
       <body className="bg-linen-white font-jakarta antialiased overflow-x-hidden">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8PB645CV4Y"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8PB645CV4Y');
+          `}
+        </Script>
         {children}
       </body>
     </html>
